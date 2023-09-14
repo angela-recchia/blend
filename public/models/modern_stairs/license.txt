@@ -1,0 +1,11 @@
+Model Information:
+* title:	Modern Stairs Asset
+* source:	https://sketchfab.com/3d-models/modern-stairs-asset-e0b4d3b867e74ba0af65669d90d998ae
+* author:	gozdemrl (https://sketchfab.com/gozdemrl)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Modern Stairs Asset" (https://sketchfab.com/3d-models/modern-stairs-asset-e0b4d3b867e74ba0af65669d90d998ae) by gozdemrl (https://sketchfab.com/gozdemrl) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
