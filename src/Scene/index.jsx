@@ -130,7 +130,7 @@ const Scene = () => {
         BLEND
       </motion.h1>
 
-      <Canvas camera={{ near: 0.1, far: 10000, fov: 120 }}>
+      <Canvas camera={{ near: 0.1, far: 10000 }}>
         <color attach={"background"} args={["#fff"]} />
         {/* <OrbitControls /> */}
 
