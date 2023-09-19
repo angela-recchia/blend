@@ -13,18 +13,31 @@ body,
 }
 
 #root {
-  display: grid;
+  // display: grid;
+}
+
+.on-top {
+  position: absolute !important;
+  inset: 0;
+  height: 100%;
+  top: 0;
+  z-index: 3;
+}
+
+.bottom {
+  z-index: 1;
 }
 
 .titleWrapper {
   // overflow: hidden;
   position: absolute;
-  z-index: 4;
+  z-index: 2;
 }
 h1 {
   position: absolute;
-
-  z-index: 3;
+  pointer-events: none;
+  z-index: 4;
+  top: 0;
   margin: 2rem;
   color: #84675e;
   font-size: 12rem;

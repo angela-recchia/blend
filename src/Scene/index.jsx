@@ -2,6 +2,8 @@ import {
   Box,
   Center,
   Environment,
+  FaceControls,
+  FaceLandmarker,
   Html,
   OrbitControls,
   Plane,
@@ -19,28 +21,32 @@ import { PiramidTable } from "../Models/PiramidTable";
 import { SpiralStair } from "../Models/SpiralStair";
 import { motion } from "framer-motion";
 import { useControls } from "leva";
+import Trail from "../Trail";
+import { House } from "../Models/House";
 
 const Stair = () => {
   const ref = useRef();
   const sphereRef = useRef();
 
-  const position = useControls("Stair Position", {
-    x: { value: 1, min: -10, max: 10, step: 0.5 },
-    y: { value: 0, min: -10, max: 10, step: 0.5 },
-    z: { value: -0.5, min: -10, max: 10, step: 0.5 },
-  });
+  // const position = useControls("Stair Position", {
+  //   x: { value: 1, min: -10, max: 10, step: 0.5 },
+  //   y: { value: 0, min: -10, max: 10, step: 0.5 },
+  //   z: { value: -0.5, min: -10, max: 10, step: 0.5 },
+  // });
 
-  const rotation = useControls("Stair rotation", {
-    x: { value: 1, min: -10, max: 10, step: 0.1 },
-    y: { value: 1, min: -10, max: 10, step: 0.1 },
-    z: { value: 0, min: -10, max: 10, step: 0.1 },
-  });
+  // const rotation = useControls("Stair rotation", {
+  //   x: { value: 1, min: -10, max: 10, step: 0.1 },
+  //   y: { value: 1, min: -10, max: 10, step: 0.1 },
+  //   z: { value: 0, min: -10, max: 10, step: 0.1 },
+  // });
 
   useFrame(({ clock }) => {
     ref.current.rotation.y = clock.getElapsedTime() * 0.02;
   });
   return (
     <>
+      {/* <Environment files="./studio_env.hdr" blur={1} /> */}
+
       <group
         position={[1, -1, -0.5]}
         rotation={[0, 0, 0]}
@@ -63,22 +69,15 @@ const Scene = () => {
     }, 2000);
     return () => clearTimeout(timer);
   }, []);
+
+  const house = useGLTF("models/house.glb");
+  console.log(house);
   return (
     <>
-      <motion.h1
-        layout
-        data-entrance={isEntrance}
-        transition={{
-          type: "keyframes",
-          duration: 2,
-        }}
-      >
-        BLEND
-      </motion.h1>
-      <div className="titleWrapper"></div>
       <Canvas
         camera={{ near: 0.1, far: 1000, position: [0, 0, 3] }}
         shadows={true}
+        className="bottom"
       >
         <Html fullscreen>
           <motion.main>
@@ -107,7 +106,6 @@ const Scene = () => {
           </motion.main>
         </Html>
 
-        <Environment files="./studio_env.hdr" blur={1} />
         {/* <OrbitControls /> */}
 
         <Lights />
@@ -115,6 +113,34 @@ const Scene = () => {
         {/* <Text color={"white"} scale={[0.5, 0.5, 0.5]} position={[0, 0, 1]}>
         BLEND
       </Text> */}
+      </Canvas>
+
+      <Canvas className="on-top">
+        <Trail />
+      </Canvas>
+
+      <motion.h1
+        layout
+        data-entrance={isEntrance}
+        transition={{
+          type: "keyframes",
+          duration: 2,
+        }}
+      >
+        BLEND
+      </motion.h1>
+
+      <Canvas camera={{ near: 0.1, far: 10000, fov: 120 }}>
+        <color attach={"background"} args={["#fff"]} />
+        {/* <OrbitControls /> */}
+
+        <FaceLandmarker>
+          <FaceControls offsetScalar={30} />
+          <ambientLight />
+          <group scale={[0.2, 0.2, 0.2]} position={[-0, -27, -40]}>
+            <House />
+          </group>
+        </FaceLandmarker>
       </Canvas>
     </>
   );
